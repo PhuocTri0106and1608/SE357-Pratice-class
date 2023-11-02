@@ -58,7 +58,8 @@
     - License: Review the license under which the open-source tool is released. Ensure that the license is compatible with your organization's requirements and that it allows for the desired level of freedom and use.
 
 4. How can tools enable distributed, global requirements engineering activities? What are the drawbacks in this regard?
-    Tools can play a crucial role in enabling distributed, global requirements engineering activities by providing several features and capabilities. Here are some ways in which tools can facilitate such activities:
+
+   Tools can play a crucial role in enabling distributed, global requirements engineering activities by providing several features and capabilities. Here are some ways in which tools can facilitate such activities:
 
         - Collaboration and Communication: Tools can offer real-time collaboration features, such as shared workspaces, comments, notifications, and discussion forums. These features allow global teams to collaborate, communicate, and provide feedback on requirements, regardless of their geographic location.
 
@@ -84,8 +85,8 @@
 
         - Despite these drawbacks, the benefits of using tools for distributed, global requirements engineering activities often outweigh the challenges. By selecting the right tools, establishing effective processes, and fostering a collaborative mindset, organizations can successfully leverage technology to enable distributed teams to work together efficiently on requirements engineering tasks.
 
-5. If an environment does not currently engage in solid requirements engineering practices, should tools be introduced?
+6. If an environment does not currently engage in solid requirements engineering practices, should tools be introduced?
 
-6. What sort of problems might you find through a traceability matrix that you might not see without one?
+7. What sort of problems might you find through a traceability matrix that you might not see without one?
 
-7. How is AI being proposed for knowledge acquisition and representation in requirements specifications?
+8. How is AI being proposed for knowledge acquisition and representation in requirements specifications?
