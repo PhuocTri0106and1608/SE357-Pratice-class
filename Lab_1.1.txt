@@ -1,0 +1,82 @@
+1. What criteria should be used in choosing an appropriate requirements engineering tool?
+
+   When choosing an appropriate requirements engineering tool, consider the following criteria:
+   - Trace for a purpose. That is, determine which linkages are truly important; otherwise, a large number of extraneous links will be 
+   generated.
+   - Define a suitable trace granularity. For example, linkages should be placed at the appropriate package, class, or method level.
+   - Support in-place traceability. Provide traceability between elements as they reside in their native environments.
+   - Use a well-defined project glossary. Create the glossary during initial discovery meetings with stakeholders and use consistently 
+   throughout the requirements engineering process.
+   - Write quality requirements. Make sure to follow generally accepted best practices such as IEEE 29148, which are particularly 
+   important for traceability.
+   - Construct a meaningful hierarchy. Experimental results show that hierarchically organized requirements are more susceptible to 
+   intelligent linking software.
+   - Bridge the intradomain semantic gap. For example, avoid overloaded terminology, that is, words that mean completely different things 
+   in two different contexts.
+   - Create rich content. Incorporate rationales and domain knowledge in each requirement.
+   - Finally, be sure to use a process improvement plan for improving the requirements engineering process.
+   
+   -> Following disciplined practices can result in better results from tool usage and a framework from which processes can be improved. 
+   Every project plan should include a description of tools to be used and how they will be used
+   
+
+2. Are there any drawbacks to using certain tools in requirements engineering activities?
+
+   There can be drawbacks to using requirements engineering tools, including:
+   - Overcomplexity that may lead to resistance from team members.
+   - High costs for licensing, maintenance, and support.
+   - Potential for tool limitations that don't align with your specific requirements processes.
+   - Learning curves and training requirements for team members.
+   - The need for continuous updates and support, which can be resource-intensive.
+
+3. When selecting an open-source tool, what characteristics should you look for?
+
+   In the book, the authour mentioned 2 open-source tool including: FreeMind and Fitnesse. 
+   From those 2 tools, I see that there an some characteristics should you look for when choodong an open-source tool:
+   - Active and Engaged Community.
+   - Regular Updates and Maintenance.
+   - Documentation and user support.
+   - Compatibility with your organization's technology stack.
+   - Flexibility and customization options.
+   - Integration capabilities with other tools.
+   - Security Measures.
+   - Licensing terms and any associated costs.
+
+4. How can tools enable distributed, global requirements engineering activities? What are the drawbacks in this regard?
+
+   Tools can enable distributed requirements engineering through:
+   - Online collaboration and communication features.
+   - Centralized repositories for requirements storage and access.
+   - Version control and access control for distributed teams.
+   - Real-time updates and notifications.
+
+   Drawbacks may include:
+   - Connectivity issues or reliance on the internet.
+   - Security concerns for sensitive requirements data.
+   - Compatibility and Integration
+   - Differences in time zones and language barriers for global teams.
+   - Potential challenges in ensuring consistent understanding of requirements across distributed teams.
+
+5. If an environment does not currently engage in solid requirements engineering practices, should tools be introduced?
+
+   Introducing requirements engineering tools can be beneficial, but it should be accompanied by a cultural shift and training. 
+   Tools alone won't fix the underlying issues. Proper training and processes must be established to ensure effective use.
+
+6. What sort of problems might you find through a traceability matrix that you might not see without one?
+
+   A traceability matrix can uncover various issues, including:
+   - Missing or incomplete requirements.
+   - Unnecessary or redundant requirements.
+   - Conflicting or inconsistent requirements.
+   - Unintended consequences of changes to requirements.
+   - Gaps in test coverage or documentation.
+
+7. How is AI being proposed for knowledge acquisition and representation in requirements specifications?
+
+   AI techniques like as natural language processing, machine learning can help with knowledge acquisition and representation in requirements specifications. 
+   AI can:
+   - Automatically extract information from documents and user inputs.
+   - Identify patterns, trends, and anomalies in requirements data.
+   - Assist in categorizing, tagging, and organizing requirements.
+   - Offer predictive analytics for potential issues or conflicts in requirements.
+   - Improve search and retrieval of relevant information in a vast requirements database.
