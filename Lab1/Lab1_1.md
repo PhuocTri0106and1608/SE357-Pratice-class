@@ -18,7 +18,8 @@
     - Cost: Consider the overall cost of the tool, including licensing fees, maintenance, and any additional costs for customization, integration, or training.
 
 2. Are there any drawbacks to using certain tools in requirements engineering activities?
-    Some of the common drawbacks to using certain tools in requirements engineering activities include:
+
+   Some of the common drawbacks to using certain tools in requirements engineering activities include:
 
         - Complexity: Some tools can be complex and difficult to use, especially for non-technical stakeholders. This can lead to resistance or decreased adoption, resulting in ineffective collaboration and communication.
 
@@ -36,7 +37,7 @@
 
         - Vendor Dependencies: The choice of a specific tool may result in a dependency on a particular vendor. If the vendor discontinues support or goes out of business, it can create challenges in the long term, including the need to migrate to a different tool.
 
-3. When selecting an open-source tool, what characteristics should you look for?
+4. When selecting an open-source tool, what characteristics should you look for?
     - Active Community: Look for an open-source tool with an active and engaged community of developers and users. This indicates ongoing development, regular updates, bug fixes, and a pool of resources for support and collaboration.
 
     - Documentation: Good documentation is crucial for understanding and effectively using the tool. Ensure that the open-source tool has comprehensive documentation, user guides, tutorials, and examples to help users get started and troubleshoot issues.
@@ -57,8 +58,9 @@
 
     - License: Review the license under which the open-source tool is released. Ensure that the license is compatible with your organization's requirements and that it allows for the desired level of freedom and use.
 
-4. How can tools enable distributed, global requirements engineering activities? What are the drawbacks in this regard?
-    Tools can play a crucial role in enabling distributed, global requirements engineering activities by providing several features and capabilities. Here are some ways in which tools can facilitate such activities:
+5. How can tools enable distributed, global requirements engineering activities? What are the drawbacks in this regard?
+
+   Tools can play a crucial role in enabling distributed, global requirements engineering activities by providing several features and capabilities. Here are some ways in which tools can facilitate such activities:
 
         - Collaboration and Communication: Tools can offer real-time collaboration features, such as shared workspaces, comments, notifications, and discussion forums. These features allow global teams to collaborate, communicate, and provide feedback on requirements, regardless of their geographic location.
 
@@ -84,8 +86,8 @@
 
         - Despite these drawbacks, the benefits of using tools for distributed, global requirements engineering activities often outweigh the challenges. By selecting the right tools, establishing effective processes, and fostering a collaborative mindset, organizations can successfully leverage technology to enable distributed teams to work together efficiently on requirements engineering tasks.
 
-5. If an environment does not currently engage in solid requirements engineering practices, should tools be introduced?
+6. If an environment does not currently engage in solid requirements engineering practices, should tools be introduced?
 
-6. What sort of problems might you find through a traceability matrix that you might not see without one?
+7. What sort of problems might you find through a traceability matrix that you might not see without one?
 
-7. How is AI being proposed for knowledge acquisition and representation in requirements specifications?
+8. How is AI being proposed for knowledge acquisition and representation in requirements specifications?
