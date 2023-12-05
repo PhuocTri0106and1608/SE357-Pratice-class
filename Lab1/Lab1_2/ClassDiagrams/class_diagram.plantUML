@@ -1,0 +1,113 @@
+@startuml
+left to right direction
+
+class Cart {
+    -userId: ObjectId
+    -productDetails: Array
+    -isDeleted: Boolean
+}
+
+class Category {
+    -name: String
+    -description: String
+    -isDeleted: Boolean
+    +createdAt: Date
+    +updatedAt: Date
+}
+
+class Color {
+    -name: String
+    -code: String
+    -isDeleted: Boolean
+    +createdAt: Date
+    +updatedAt: Date
+}
+
+class Order {
+    -userId: ObjectId
+    -orderDate: Date
+    -orderTotalPrice: Number
+    -note: String
+    -productDetails: Array
+    -isDeleted: Boolean
+    -orderStatus: String
+    -shippingCost: Number
+    -orderMethod: String
+    -address: String
+}
+
+class Product {
+    -name: String
+    -price: Number
+    -image: Array
+    -description: String
+    -categoryId: ObjectId
+    -isDeleted: Boolean
+    +createdAt: Date
+    +updatedAt: Date
+}
+
+class ProductDetail {
+    -sizeId: ObjectId
+    -colorId: ObjectId
+    -quantity: Number
+    -productId: ObjectId
+    -isDeleted: Boolean
+}
+
+class ResetToken {
+    -owner: ObjectId
+    -token: String
+    -createAt: Date
+}
+
+class Shipment {
+    -orderId: ObjectId
+    -startShippingDate: Date
+    -endShippingDate: Date
+    -userAddress: String
+    -userId: ObjectId
+}
+
+class Size {
+    -name: String
+    -isDeleted: Boolean
+    +createdAt: Date
+    +updatedAt: Date
+}
+
+class User {
+    -email: String
+    -password: String
+    -fullName: String
+    -phoneNumber: String
+    -emailVerified: Boolean
+    -refreshToken: String
+    -avatarImage: String
+    -addresses: Array
+    +createdAt: Date
+    +updatedAt: Date
+}
+
+class VerificationToken {
+    -owner: ObjectId
+    -token: String
+    -createAt: Date
+}
+
+Cart "1" *- "0..n" User : has >
+Order "1" *- "0..n" User : has >
+Product "1" *- "0..n" Category : categorized in >
+ProductDetail "1" *-- "1" Product : details of >
+ProductDetail "1" *-- "1" Size : has >
+ProductDetail "1" *-- "1" Color : has >
+Shipment "1" *- "1" Order : ships >
+ResetToken "1" *- "1" User : resets >
+VerificationToken "1" *- "1" User : verifies >
+
+skinparam class {
+    BackgroundColor Snow
+    ArrowColor Olive
+    BorderColor SpringGreen
+}
+@enduml
