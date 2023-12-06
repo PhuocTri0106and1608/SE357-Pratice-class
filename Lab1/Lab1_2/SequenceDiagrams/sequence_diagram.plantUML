@@ -1,0 +1,89 @@
+Account:
+    participant User
+    participant App
+    participant Server
+
+    User -> App: Sign up
+    App -> Server: Create user account
+    Server -> App: Generate verification token
+    User -> App: Log in
+    App -> Server: Retrieve user details
+    User -> App: Verify email
+    Server -> App: Verify token and update emailVerified status
+    User -> App: Request password reset
+    App -> Server: Generate reset token
+    User -> App: Reset password
+    Server -> App: Validate and update password
+    User -> App: Update profile
+    App -> Server: Update user profile
+    User -> App: Log out
+    App -> Server: Update user status
+Product:
+    participant Client
+    participant App
+    participant Server
+
+    Client -> App: Search
+    App -> Server: Retrieve category details
+    Server -> App: Response category details
+    App -> Client: Display category details
+    Client -> App: View product details
+    App -> Server: Retrieve product details
+    Server -> App: Response product details
+    App -> Client: Display product details
+    Client -> App: Add to cart
+    App -> Server: Save client's cart
+Cart:
+    participant Client
+    participant App
+    participant Server
+
+    Client -> App: View cart details
+    App -> Server: Retrieve client's cart details
+    Server -> App: Response client's cart details
+    App -> Client: Display client's cart details
+    Client -> App: Edit cart amount
+    App -> Server: Save client's cart
+Place Order:
+    participant Client
+    participant App
+    participant Server
+
+    Client -> App: View order details
+    App -> Server: Retrieve order details
+    Server -> App: Response order details
+    App -> Client: Display order details
+    Client -> App: View address list
+    App -> Server: Retrieve address details
+    Server -> App: Response address details
+    App -> Client: Display address details
+    Client -> App: Edit address
+    Client -> App: Edit order details
+    Client -> App: Place order
+    App -> Server: Send order details
+Order Management:
+    participant Admin
+    participant App
+    participant Server
+
+    Admin -> App: View list of orders
+    App -> Server: Retrieve order list
+    Server -> App: Response order list
+    App -> Admin: Display order list
+    Admin -> App: Edit orders status
+    App -> Server: Update order status
+Product Management:
+    participant Admin
+    participant App
+    participant Server
+
+    Admin -> App: View list of products
+    App -> Server: Retrieve product list
+    Server -> App: Response product list
+    App -> Admin: Display product list
+    Admin -> App: Add product
+    App -> Server: Update product list
+    Admin -> App: Edit product details
+    App -> Server: Update product list
+    Admin -> App: Delete product
+    App -> Server: Update product list
