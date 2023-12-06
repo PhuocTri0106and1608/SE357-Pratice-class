@@ -38,6 +38,22 @@ Log in:
     stop
     @enduml
 
+View product details:
+    @startuml
+
+    |#lightgray|System|
+    start
+    :Display Product list;
+    |#White|Admin|
+    :Choose a product;
+    |#lightgray|Database|
+    :Query data from database;
+    |#lightgray|System|
+    :Displays product details;
+    stop
+
+    @enduml
+
 Add product:
     @startuml
     |#lightgray|System|
@@ -129,6 +145,22 @@ Search product:
     |#lightgray|System|
     :Display products; 
     stop
+    @enduml
+
+View category details:
+    @startuml
+
+    |#lightgray|System|
+    start
+    :Display Category list;
+    |#White|Admin|
+    :Choose a category;
+    |#lightgray|Database|
+    :Query data from database;
+    |#lightgray|System|
+    :Displays category details;
+    stop
+
     @enduml
 
 Add category:
@@ -287,6 +319,23 @@ Check out:
     stop
     @enduml
 
+Activate warranty:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display customer profile;
+    |#lightgray|System|
+    :Display purchased product list;
+    |#White|Admin|
+    :Finds product name;
+    :Choose product;
+    :Choose activate warranty;
+    |#lightgray|Database|
+    :Save activated date;
+    |#lightgray|System|
+    stop
+    @enduml
+
 Check warranty:
     @startuml
     |#lightgray|System|
@@ -302,6 +351,20 @@ Check warranty:
     |#lightgray|System|
     :Shows warranty date, warranty history and warranty status;
     stop
+    @enduml
+
+View customer:
+    @startuml
+    |#lightgray|System|
+        start
+        :Display Customer list;
+        |#White|Admin|
+        :Choose a customer;
+        |#lightgray|Database|
+        :Query data from database;
+        |#lightgray|System|
+        :Displays customer informations;
+        stop
     @enduml
 
 Delete customer:
@@ -339,5 +402,76 @@ Warn customer:
     :Send the customer warning message; 
     |#lightgray|System|
     :Display Customer list ;
+    stop
+    @enduml
+
+View order details:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Order list page;
+    |#White|Customer/Admin|
+    :Choose a order;
+    |#lightgray|Database|
+    :Query data from database;
+    |#lightgray|System|
+    :Displays orders details;
+    stop
+    @enduml
+
+View order history:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Dashboard/Menu page;
+    |#White|Customer/Admin|
+    :Choose Order/My orders;
+    |#lightgray|Database|
+    :Query data from database;
+    |#lightgray|System|
+    :Displays orders list;
+    stop
+    @enduml
+
+Update order status:
+    @startuml
+    |#lightgray|System|
+    start
+    :Displays orders list;
+    |#White|Admin|
+    :Choose a order;
+    |#lightgray|Database|
+    :Query data from database;
+    |#lightgray|System|
+    :Displays orders details;
+    |#White|Admin|
+    :Change the status;
+    :Save;
+    |#lightgray|Database|
+    :Save change;
+    stop
+    @enduml
+
+Edit customer profile:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Customer information page;
+    |#White|Customer|
+    :Choose button Edit;
+    |#lightgray|System|
+    :Display Edit customer information page;
+    |#White|Customer|
+    repeat
+    :Enter change category detail;
+    :Submit ;
+    |#lightgray|System|
+    backward:Display an error message and require customer to re-enter the information;
+    repeat while (Check if the information is valid or not) is (INVALID)
+    -> VALID;
+    |#lightgray|Database|
+    :Update customer information; 
+    |#lightgray|System|
+    :Display Customer information page;
     stop
     @enduml
