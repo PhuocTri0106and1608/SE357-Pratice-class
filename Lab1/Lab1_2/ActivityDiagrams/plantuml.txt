@@ -1,0 +1,343 @@
+Sign up:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Login page;
+    |#White|Customer|
+    :Select sign up function;
+    |#lightgray|System|
+    :Show register form;
+    repeat
+    |#White|Customer|
+    :Fill in the sign upform;
+    |#White|Customer|
+    backward:Display an error message and require customer to re-enter the information;
+    repeat while (Validate the entered information format) is (INVALID)
+    -> VALID;
+    |#lightgray|Database|
+    :Create new account ; 
+    |#lightgray|System|
+    :Display Login page;
+    stop
+    @enduml
+
+Log in:
+    @startuml
+    |System|
+    start
+    :Display Login page;
+    |Customer/Admin|
+    repeat :Show log in form;
+    :Submit;
+    |System|
+    backward : Display an error message and require to re-enter the information;
+    |Database|
+    repeat while (Valid?) is (No) not (Yes)
+    |System|
+    :Display Home screen;
+    stop
+    @enduml
+
+Add product:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Product list ;
+    |#White|Admin|
+    :Click Add button ;
+    |#lightgray|System|
+    :Display Product information form;
+    |#White|Admin|
+    repeat
+    :Enter Product information and submit ;
+    |#lightgray|System|
+    backward:Display an error message and require admin to re-enter the information;
+    repeat while (Check if the informations) is (INVALID)
+    -> VALID;
+    |#lightgray|Database|
+    :Save new product's information; 
+    |#lightgray|System|
+    :Display Product list ;
+    stop
+    @enduml
+
+Update product:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Product list ;
+    |#White|Admin|
+    :Choose a Product ;
+    :Press button Edit;
+    |#lightgray|System|
+    :Display Edit product detail form;
+    |#White|Admin|
+    repeat
+    :Enter new product detail and submit ;
+    |#lightgray|System|
+    backward:Display an error message and require admin to re-enter the information;
+    repeat while (Check if the information is valid or not) is (INVALID)
+    -> VALID;
+    |#lightgray|Database|
+    :Update product details ; 
+    |#lightgray|System|
+    :Display Product list ;
+    stop
+    @enduml
+
+Delete product:
+    @startuml
+    |#lightgray|System|
+    start
+    repeat
+    :Display Product list ;
+    |#Admin|
+    :Choose a product ;
+    :Press button Delete ;
+    repeat while (Delete Product messeage box) is (No) 
+    -> Yes;
+    |#lightgray|Database|
+    :Delete the product from the database ; 
+    |#lightgray|System|
+    :Display Product list ;
+    stop
+    @enduml
+
+Search product:
+    @startuml
+    |#lightgray|System|
+    start
+    repeat
+    :Display Product list ;
+    |#White|Customer/Admin|
+    :Select Search field and enter key words ;
+
+    |#lightgray|System|
+    ' backward:Display empty result notification;
+
+    |#lightgray|System|
+    start
+    repeat
+    :Display Product list ;
+    |#White|Customer/Admin|
+    :Select Search icon and enter keywords ;
+    |#lightgray|System|
+    backward:Display no result notification;
+    |#lightgray|Database|
+    repeat while (Query data related to key word) is (No) 
+    -> yes;
+    |#lightgray|System|
+    :Display products; 
+    stop
+    @enduml
+
+Add category:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Category list ;
+    |#White|Admin|
+    :Click Add button ;
+    |#lightgray|System|
+    :Display Category information form;
+    |#White|Admin|
+    repeat
+    :Enter Category information and submit ;
+    |#lightgray|System|
+    backward:Display an error message and require admin to re-enter the information;
+    repeat while (Check if the informations) is (INVALID)
+    -> VALID;
+    |#lightgray|Database|
+    :Save new category; 
+    |#lightgray|System|
+    :Display Category list ;
+    stop
+    @enduml
+
+Update category:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Category list ;
+    |#White|Admin|
+    :Choose a category ;
+    :Press button Edit;
+    |#lightgray|System|
+    :Display Edit category detail form;
+    |#White|Admin|
+    repeat
+    :Enter new category detail and submit ;
+    |#lightgray|System|
+    backward:Display an error message and require admin to re-enter the information;
+    repeat while (Check if the information is valid or not) is (INVALID)
+    -> VALID;
+    |#lightgray|Database|
+    :Update category details ; 
+    |#lightgray|System|
+    :Display Category list ;
+    stop
+    @enduml
+
+Delete category:
+    @startuml
+    |#lightgray|System|
+    start
+    repeat
+    :Display Category list ;
+    |#Admin|
+    :Choose a category ;
+    :Press button Delete ;
+    repeat while (Delete category messeage box) is (No) 
+    -> Yes;
+    |#lightgray|Database|
+    :Delete the category from the database ; 
+    |#lightgray|System|
+    :Display Category list ;
+    stop
+    @enduml 
+
+Add product to cart:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Product list ;
+    |#White|Admin|
+    :Choose a product ;
+    |#lightgray|System|
+    :Display Product details;
+    |#White|Admin|
+    :Choose product color, amount and size;
+    repeat
+    :Add to cart ;
+    |#lightgray|System|
+    backward:Display an error message and require customer to check again;
+    repeat while (Check if the informations) is (INVALID)
+    -> VALID;
+    |#lightgray|Database|
+    :Add product to cart;
+    :Update cart; 
+    |#lightgray|System|
+    :Display Product details;
+    stop
+    @enduml
+
+Update cart:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Cart page;
+    |#lightgray|Customer|
+    if (Cart is empty) then (no)
+    :Choose product;
+    else (yes)
+        :Display message "Cart is empty";
+        |#lightgray|System|
+        :Display Cart page;
+        stop
+    end if
+    |#white|Customer|
+    if (Delete) then (no)
+        :Choose product;
+    :Choose "+" to add more and "-" to subtract;
+    else (yes)
+         :Swift left;
+         :Choose Delete button;
+        stop
+    end if
+    
+    |#lightgray|Database|
+    
+    :Update cart;
+    |#lightgray|System|
+    :Display Cart page;
+    stop
+    @enduml
+
+Check out:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display Cart page;
+    |#lightgray|Customer|
+    if (Cart is empty) then (no)
+    :Choose Submit button;
+    else (yes)
+        :Display message "Cart is empty";
+        |#lightgray|System|
+        :Display Home screen;
+        stop
+    end if
+    |#lightgray|System|
+    :Display Check out page;
+
+    |#white|Customer|
+    repeat :Enter address;
+    :Choose payment method;
+    :Check out;
+
+    |#lightgray|System|
+    backward : Display an error message and require customer to re-enter the information;
+
+    |#lightgray|Database|
+    repeat while (Valid data?) is (No) not (Yes)
+    :Confirm order;
+    |#lightgray|System|
+    :Display successful notification;
+    :Display Order sucessful page;
+    stop
+    @enduml
+
+Check warranty:
+    @startuml
+    |#lightgray|System|
+    start
+    :Display customer profile;
+    |#lightgray|System|
+    :Display purchased product list;
+    |#White|Admin|
+    :Finds product name;
+    :Choose show warrenty of product;
+    |#lightgray|Database|
+    :Query data ;
+    |#lightgray|System|
+    :Shows warranty date, warranty history and warranty status;
+    stop
+    @enduml
+
+Delete customer:
+    @startuml
+    |#lightgray|System|
+    start
+    repeat
+    :Display Customer list ;
+    |#Admin|
+    :Choose a customer;
+    :Press button Delete ;
+    repeat while (Delete customer messeage box) is (No) 
+    -> Yes;
+    |#lightgray|Database|
+    :Delete the customer from the database ; 
+    |#lightgray|System|
+    :Display Customer list ;
+    stop
+    @enduml
+
+Warn customer:
+    @startuml
+    |#lightgray|System|
+    start
+    repeat
+    :Display Customer list ;
+    |#Admin|
+    :Choose a customer;
+    :Press button Warning;
+    repeat while (Warning customer messeage box) is (No) 
+    -> Yes;
+    :Warning form;
+    :Fill in warning form;
+    |#lightgray|Database|
+    :Send the customer warning message; 
+    |#lightgray|System|
+    :Display Customer list ;
+    stop
+    @enduml
