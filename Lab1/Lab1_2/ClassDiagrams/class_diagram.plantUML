@@ -95,15 +95,15 @@ class VerificationToken {
     -createAt: Date
 }
 
-Cart "1" *- "0..n" User : has >
-Order "1" *- "0..n" User : has >
-Product "1" *- "0..n" Category : categorized in >
-ProductDetail "1" *-- "1" Product : details of >
-ProductDetail "1" *-- "1" Size : has >
-ProductDetail "1" *-- "1" Color : has >
-Shipment "1" *- "1" Order : ships >
-ResetToken "1" *- "1" User : resets >
-VerificationToken "1" *- "1" User : verifies >
+Cart "1" *-- "1" User : has >
+Order "1" *-- "0..n" User : has >
+Product "1" --* "0..n" Category : categorized in >
+ProductDetail "1" --o "1" Product : details of >
+ProductDetail "1" --|> "1" Size : has >
+ProductDetail "1" --|> "1" Color : has >
+Shipment "1" --o "1" Order : ships >
+ResetToken "1" --o "1" User : resets >
+VerificationToken "1" --o "1" User : verifies >
 
 skinparam class {
     BackgroundColor Snow
