@@ -1,0 +1,63 @@
+@startuml
+left to right direction
+actor "Admin" as ad
+actor "Customer" as ctm
+rectangle {
+usecase "1. Search product" as UC1
+usecase "2. Add product" as UC2
+usecase "3. Update product" as UC3
+usecase "4. Delete product" as UC4
+usecase "5. View product details" as UC5
+usecase "6. View category details" as UC6
+usecase "7. Add category" as UC7
+usecase "8. Update category" as UC8
+usecase "9. Delete category" as UC9
+usecase "10. Delete Customer" as UC10
+usecase "11. CRUD profile" as UC11
+usecase "12. Place order" as UC12
+usecase "13. Login/Log out" as UC13
+usecase "14. Sign up" as UC14
+usecase "15. Add product to cart" as UC15
+usecase "17. View order status" as UC17
+usecase "18. Update order status" as UC18
+usecase "19. View order history" as UC19
+usecase "20. Warn customer" as UC20
+usecase "Modify customer" as UCMCU
+usecase "Modify product" as UCMP
+usecase "Modify category" as UCMCA
+usecase "21. Activate warranty" as UC21
+usecase "22. Check warranty" as UC22
+usecase "23. View order details" as UC23
+} 
+
+ad -right-|> ctm
+ad -- UC1
+ad -- UC2
+ad -- UC13
+ad -- UC6
+ad -- UC7
+ad -- UC17
+ad -- UC19
+ad -- UC18
+ad -- UC21
+ad -- UC22
+
+UC3 .up.> UCMP : <<extends>>
+UC4 .up.> UCMP : <<extends>>
+UC5 .up.> UC1 : <<extends>>
+UC8 .up.> UCMCA : <<extends>>
+UC9 .up.> UCMCA : <<extends>>
+UC10 .up.> UCMCU : <<extends>>
+UC20 .up.> UCMCU : <<extends>>
+UC17 .down.> UC23 : <<includes>>
+UC19 .down.> UC23 : <<includes>>
+
+ctm -- UC1
+ctm -- UC11
+ctm -- UC12
+ctm -- UC13
+ctm -- UC14
+ctm -- UC15
+ctm -- UC17
+ctm -- UC19
+@enduml
