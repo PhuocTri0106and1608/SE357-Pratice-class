@@ -233,11 +233,11 @@ Add product to cart:
     |#lightgray|System|
     start
     :Display Product list ;
-    |#White|Admin|
+    |#White|Customer|
     :Choose a product ;
     |#lightgray|System|
     :Display Product details;
-    |#White|Admin|
+    |#White|Customer|
     :Choose product color, amount and size;
     repeat
     :Add to cart ;
