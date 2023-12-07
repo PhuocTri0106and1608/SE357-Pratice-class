@@ -1,89 +1,423 @@
-Account:
-    participant User
-    participant App
-    participant Server
+Sign up:
+    @startuml
+    actor Customer
+    participant "Customer"
+    participant "System"
+    database "Database"
 
-    User -> App: Sign up
-    App -> Server: Create user account
-    Server -> App: Generate verification token
-    User -> App: Log in
-    App -> Server: Retrieve user details
-    User -> App: Verify email
-    Server -> App: Verify token and update emailVerified status
-    User -> App: Request password reset
-    App -> Server: Generate reset token
-    User -> App: Reset password
-    Server -> App: Validate and update password
-    User -> App: Update profile
-    App -> Server: Update user profile
-    User -> App: Log out
-    App -> Server: Update user status
-Product:
-    participant Client
-    participant App
-    participant Server
+    Customer -> System: Display Login page
+    Customer -> System: Select sign up function
+    System -> Customer: Show register form
+    Customer -> System: Fill in the sign-up form
+    System -> System: Validate the entered information format
+    System -> Database: Create new account
+    System -> System: Display Login page
+    @enduml
+Login:
+    actor Admin_Customer
+    participant "Admin_Customer"
+    participant "System"
+    database "Database"
 
-    Client -> App: Search
-    App -> Server: Retrieve category details
-    Server -> App: Response category details
-    App -> Client: Display category details
-    Client -> App: View product details
-    App -> Server: Retrieve product details
-    Server -> App: Response product details
-    App -> Client: Display product details
-    Client -> App: Add to cart
-    App -> Server: Save client's cart
-Cart:
-    participant Client
-    participant App
-    participant Server
+    Admin_Customer->System: Display Login page
+    loop
+        Admin_Customer->System: Show log in form
+        Admin_Customer->System: Submit
+        alt Valid?
+            System->Database: Check if credentials are valid
+            Database-->System: Valid?
+            alt No
+                System->Admin_Customer: Display an error message
+            else Yes
+                System->Admin_Customer: Redirect to Home screen
+            end
+        end
+    end
+    Admin_Customer->System: Display Home screen
 
-    Client -> App: View cart details
-    App -> Server: Retrieve client's cart details
-    Server -> App: Response client's cart details
-    App -> Client: Display client's cart details
-    Client -> App: Edit cart amount
-    App -> Server: Save client's cart
-Place Order:
-    participant Client
-    participant App
-    participant Server
+View product details:
+    @startuml
+    actor Admin_Customer
+    participant "System"
+    participant "Admin_Customer"
+    database "Database"
 
-    Client -> App: View order details
-    App -> Server: Retrieve order details
-    Server -> App: Response order details
-    App -> Client: Display order details
-    Client -> App: View address list
-    App -> Server: Retrieve address details
-    Server -> App: Response address details
-    App -> Client: Display address details
-    Client -> App: Edit address
-    Client -> App: Edit order details
-    Client -> App: Place order
-    App -> Server: Send order details
-Order Management:
-    participant Admin
-    participant App
-    participant Server
+    Admin_Customer -> System: Choose a product
+    activate System
+    System -> Database: Query data from database
+    activate Database
+    Database --> System: Returns product details
+    deactivate Database
+    System --> Admin_Customer: Displays product details
+    deactivate System
+    @enduml
 
-    Admin -> App: View list of orders
-    App -> Server: Retrieve order list
-    Server -> App: Response order list
-    App -> Admin: Display order list
-    Admin -> App: Edit orders status
-    App -> Server: Update order status
-Product Management:
-    participant Admin
-    participant App
-    participant Server
+Add product:
+    @startuml
+    actor Admin
+    participant "System"
+    participant "Admin"
+    database "Database"
+    Admin -> System: Click Add button
+    System --> Admin: Display Product information form
+    Admin->System: Enter Product information and submit
+    loop Check if the information is INVALID
+        alt INVALID
+            System -> Admin: Display an error message and require re-entry
+        else VALID
+            System->Database: Save new product's information
+        end
+    end
+    System --> Admin: Display Product list
+@enduml
 
-    Admin -> App: View list of products
-    App -> Server: Retrieve product list
-    Server -> App: Response product list
-    App -> Admin: Display product list
-    Admin -> App: Add product
-    App -> Server: Update product list
-    Admin -> App: Edit product details
-    App -> Server: Update product list
-    Admin -> App: Delete product
-    App -> Server: Update product list
+Update product:
+    @startuml
+    actor Admin as admin
+    participant System
+    database "Database" as DB
+
+    admin -> System: Choose a Product
+    System -> System: Display Edit product detail form
+    admin -> System: Enter new product detail and submit
+    alt Information is INVALID
+        System -> System: Display an error message and require admin to re-enter the information
+    else Information is VALID
+        System -> DB: Update product details
+    end
+    System -> System: Display Product list
+    @enduml
+
+
+Delete product:
+    @startuml
+    actor Admin
+    participant "System"
+    database "Database"
+    Admin -> System: Choose a product
+    Admin -> System: Press button Delete
+    System -> Database: Delete product from the database
+    System -> System: Display Product list
+    @enduml
+
+Search product:
+    @startuml
+    actor Admin_Customer
+    participant System
+    database "Database" as DB
+
+    Admin_Customer-> System: Select Search field and enter keywords
+    System -> DB: Query data related to keyword
+    alt Data Found
+        DB -> System: Return product list
+        loop Display products
+            System -> Admin_Customer: Display Product list
+        end
+    else No Data Found
+        DB -> System: Return empty result notification
+        System -> Admin_Customer: Display empty result notification
+    end
+    @enduml
+
+
+View category details:
+    @startuml
+    actor Admin_Customer
+    participant System
+    database "Database" as DB
+
+    Admin_Customer -> System: Choose a category
+    System -> DB: Query data from database
+    DB --> System: Return category details
+    System --> Admin_Customer: Displays category details
+    @enduml
+
+
+Add category:
+    @startuml
+    actor Admin as admin
+    participant System as sys
+    database Database
+
+    admin -> sys: Click Add Category
+    sys -> admin: Display Category Information Form
+    admin -> sys: Enter Category Information and Submit
+    alt Information is VALID
+        sys -> Database: Save New Category
+        Database -> sys: Confirmation
+        sys -> admin: Display Category List
+    else Information is INVALID
+        sys -> admin: Display Error Message
+        admin -> sys: Re-enter Information
+    end
+    @enduml
+
+
+Update category:
+    @startuml
+    actor Admin
+    participant System
+    database Database
+
+    Admin -> System: Choose a category
+    Admin -> System: Press button Edit
+    System -> Admin: Display Edit category detail form
+    Admin -> System: Enter new category detail and submit
+
+    alt Check if information is valid
+        System -> Database: Update category details
+        System -> Admin: Display Category list
+    else Information is invalid
+        System -> Admin: Display an error message
+        loop while (Check if the information is valid or not) is (INVALID)
+            Admin -> System: Re-enter the information
+        end
+    end
+
+    Admin -> System: Display Category list
+    @enduml
+
+
+Delete category:
+    @startuml
+    actor Admin
+    participant System
+    database Database
+
+    Admin -> System: Choose a category to delete
+    System -> Admin: Display Category list
+    Admin -> System: Press button Delete
+    System -> Database: Delete the category from the database
+    Database --> System: Confirmation of deletion
+    System -> Admin: Display updated Category list
+    @enduml
+
+
+Add product to cart:
+    @startuml
+    actor Customer
+    participant System
+    database Database
+    participant "Customer"
+
+    Customer-> System: Choose a product
+    System -> Database: Retrieve Product details
+    System -> Customer: Display Product details
+    Customer-> System: Choose product color, amount and size
+    loop
+        Customer-> System: Add to cart
+        System -> Database: Check if the information is VALID
+        alt INVALID
+            System -> Customer: Display an error message
+        else VALID
+            Customer-> System: Add product to cart
+            Customer-> System: Update cart
+            System -> Customer: Display Product details
+        end
+    end
+    @enduml
+
+Update cart:
+    @startuml
+    actor Customer
+    participant System
+    database Database
+
+    Customer -> System: Display Cart page
+    alt Cart is empty
+        Customer -> System: Choose product
+    else Cart is not empty
+        System -> Customer: Display message "Cart is empty"
+        System -> System: Display Cart page
+    end
+    Customer -> System: Choose product
+    alt Add or Subtract
+        Customer -> System: Choose "+" to add more and "-" to subtract
+    else Delete
+        Customer -> System: Swift left
+        Customer -> System: Choose Delete button
+    end
+    System -> Database: Update cart
+    System -> System: Display Cart page
+    @enduml
+
+
+Check out:
+    @startuml
+    actor Customer
+    participant "System"
+    database "Database"
+
+    Customer -> System: Display Cart page
+    alt Cart is empty
+        Customer -> System: Choose Submit button
+    else Cart is not empty
+        System --> Customer: Display message "Cart is empty"
+        System --> Customer: Display Home screen
+    end if
+    Customer -> System: Display Check out page
+    loop
+        Customer -> System: Enter address
+        Customer -> System: Choose payment method
+        Customer -> System: Check out
+        alt Valid data?
+        Database --> System: Confirm order
+        System --> Customer: Display successful notification
+        System --> Customer: Display Order successful page
+        else Invalid data
+        System --> Customer: Display an error message and require customer to re-enter the information
+        end
+    end
+    @enduml
+
+
+Activate warranty:
+    actor Admin
+    participant System
+    database Database
+
+    Admin->System: Display customer profile
+    System->Admin: Customer profile displayed
+    Admin->System: Display purchased product list
+    System->Admin: Purchased product list displayed
+    Admin->Admin: Finds product name
+    Admin->Admin: Choose product
+    Admin->Admin: Choose activate warranty
+    Admin->System: Choose activate warranty
+    System->Database: Save activated date
+    System->Admin: Warranty activated
+
+
+Check warranty:
+    @startuml
+    actor Admin
+    participant System
+    database Database
+    Admin -> System: Displaying customer profile
+    Admin -> System: Displaying purchased product list
+    Admin -> Admin: Find product name
+    Admin -> Admin: Choose to show warranty of the product
+    Admin -> Database: Query data
+    Database -> System: Returns warranty details
+    System -> Admin: Shows warranty date, history, and status
+    @enduml
+
+
+View customer:
+    @startuml
+    actor Admin
+    participant System
+    database Database
+
+    Admin -> System: Display Customer list
+    Admin -> System: Choose a customer
+    System -> Database: Query data from database
+    Database -> System: Return customer information
+    System -> Admin: Displays customer information
+    @enduml
+
+
+Delete customer:
+    @startuml
+    actor Admin
+    participant System
+    database Database
+    Admin -> System: Choose customer to delete
+    System -> Database: Retrieve customer information
+    Database --> System: Customer information
+    System -> Admin: Display customer information
+    Admin -> System: Confirm deletion
+    System -> Database: Delete customer record
+    Database --> System: Deletion confirmation
+    System -> Admin: Update customer list
+    @enduml
+
+
+Warn customer:
+    @startuml
+    actor Admin
+    participant System
+    database Database
+
+    Admin->System: Display Customer list
+    Admin->System: Choose a customer
+    Admin->System: Press button Warning
+    System->System: Warning customer message box
+    System-->Admin: Display warning form
+    Admin->System: Fill in warning form
+    System->Database: Send the customer warning message
+    Database-->System: Confirmation of message sent
+    System-->Admin: Display updated Customer list
+    @enduml
+
+
+View order details:
+    @startuml
+    actor Admin_Customer
+    participant System
+    database Database
+
+    Admin_Customer-> System: Display Order list page
+    System -> Admin_Customer: Order list page
+    Admin_Customer-> System: Choose order
+    System -> Database: Query data from database
+    Database --> System: Order details
+    System --> Admin_Customer: Display order details
+    @enduml
+
+
+View order history:
+    @startuml
+    actor Admin_Customer
+    participant System
+    database Database
+
+    Admin_Customer -> System: Display Dashboard/Menu page
+    System -> Admin_Customer: Displays Dashboard/Menu page
+    Admin_Customer-> System: Choose Order/My orders
+    System -> Database: Query data from database
+    Database --> System: Retrieves order history data
+    System --> Admin_Customer: Displays order history
+    Admin_Customer -> System: Select specific order to view details
+    System -> Database: Query data from database for selected order
+    Database --> System: Retrieves selected order details
+    System --> Admin_Customer: Displays selected order details
+    @enduml
+
+
+Update order status:
+    @startuml
+    actor Admin
+    participant System
+    database Database
+
+    Admin -> System: Displays orders list
+    Admin -> System: Choose an order
+    System-> Database: Query data from database
+    Database -> System: Returns order details
+    Admin -> System: Change the status
+    Admin -> System: Save
+    System-> Database: Save change
+    @enduml
+
+
+Edit customer profile:
+    @startuml
+    actor Customer
+    participant System
+    database Database
+
+    Customer -> System: Display Customer information page
+    Customer -> System: Choose button Edit
+    System -> System: Display Edit customer information page
+    Customer -> System: Enter change category detail
+    Customer -> System: Submit
+    System -> System: Check if the information is valid or not
+    alt Information is Invalid
+        System -> System: Display an error message\nand require customer to re-enter the information
+    else Information is Valid
+        System -> Database: Update customer information
+        Database --> System: Updated
+    end
+    System -> System: Display Customer information page
+    @enduml
