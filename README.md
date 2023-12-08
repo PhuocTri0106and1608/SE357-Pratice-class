@@ -2,12 +2,12 @@
 
 ![UIT](https://img.shields.io/badge/from-UIT%20VNUHCM-blue?style=for-the-badge&link=https%3A%2F%2Fwww.uit.edu.vn%2F)
 
-[FASHION APP]
+<h1>FASHION APP</h1>
 
 **Contributors**:
 
-- Leader: Trương Nguyễn Phước Trí - 21521571 - [PhuocTri0106and1608](https://github.com/PhuocTri0106and1608) 
-- Member: Hồ Thị Thanh Thảo - 21521456 - [thanhtheox]([https://github.com/PhuocTri0106and1608](https://github.com/thanhtheox)
+- Leader: Trương Nguyễn Phước Trí - 21521571 - [PhuocTri0106and1608](https://github.com/PhuocTri0106and1608).  
+- Member: Hồ Thị Thanh Thảo - 21521456 - [thanhtheox](https://github.com/thanhtheox).  
 
 **Supervisors**:
 - Lecturer: Vũ Tuấn Hải - [vutuanhai237](https://github.com/vutuanhai237) 
